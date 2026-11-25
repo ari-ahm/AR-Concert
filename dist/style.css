@@ -1,0 +1,645 @@
+:root {
+  color-scheme: light;
+  --paper: #f3f2ec;
+  --ink: #202320;
+  --muted: #60665e;
+  --line: #cfcec5;
+  --orange: #e66331;
+  --mint: #aee8d8;
+  font:
+    16px/1.45 "DM Sans",
+    Inter,
+    system-ui,
+    sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+header,
+main {
+  max-width: 1480px;
+  margin: auto;
+  padding-inline: clamp(18px, 4.6vw, 78px);
+}
+header {
+  height: 78px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  gap: 23px;
+}
+.brand {
+  font-size: 26px;
+  letter-spacing: -1.6px;
+  font-weight: 760;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.brandmark {
+  background: var(--orange);
+  color: #181d19;
+  padding: 1px 7px;
+  border-radius: 8px;
+  letter-spacing: -5px;
+  padding-right: 11px;
+  font-family: monospace;
+}
+.headtag,
+.eyebrow,
+.pill,
+.mapnote,
+#time {
+  font:
+    600 0.75rem/1.5 "IBM Plex Mono",
+    ui-monospace,
+    monospace;
+  letter-spacing: 0.09em;
+}
+.headtag {
+  border-left: 1px solid var(--line);
+  padding-left: 22px;
+  color: var(--muted);
+}
+button,
+select,
+input {
+  font: inherit;
+}
+button,
+.filebtn,
+select {
+  cursor: pointer;
+}
+button {
+  color: inherit;
+}
+button:disabled {
+  cursor: default;
+  opacity: 0.48;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+.filebtn:focus-within {
+  outline: 3px solid #279d91;
+  outline-offset: 3px;
+}
+.help {
+  margin-left: auto;
+  background: transparent;
+  border: 0;
+  font-size: 0.9rem;
+}
+.help b {
+  display: inline-grid;
+  place-items: center;
+  width: 19px;
+  height: 19px;
+  border: 1px solid;
+  border-radius: 100%;
+  margin-left: 5px;
+}
+.intro,
+.sectitle,
+.maphead,
+.mapfoot,
+.player,
+.statusline {
+  display: flex;
+  align-items: center;
+}
+.intro {
+  justify-content: space-between;
+  gap: 15px;
+  padding: 42px 0 24px;
+}
+.eyebrow {
+  color: var(--muted);
+}
+.eyebrow i,
+.dot {
+  display: inline-block;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  background: var(--orange);
+  margin-right: 6px;
+}
+h1,
+h2,
+p {
+  margin: 0;
+}
+h1 {
+  font-size: clamp(2.7rem, 5.3vw, 5.3rem);
+  line-height: 1.06;
+  letter-spacing: -0.07em;
+  font-weight: 620;
+  margin-top: 7px;
+}
+h1 span,
+.waveicon {
+  color: var(--orange);
+}
+h2 {
+  font-size: 1.27rem;
+  letter-spacing: -0.045em;
+}
+.primary,
+.filebtn,
+.small {
+  border-radius: 8px;
+  font-weight: 640;
+}
+.primary {
+  background: #222722;
+  color: white;
+  border: 0;
+  padding: 13px 19px;
+}
+.primary:hover,
+.filebtn:hover {
+  background: #374339;
+}
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(265px, 29%);
+  gap: 16px;
+}
+.mapcard {
+  background: #19201e;
+  color: #faf9f1;
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.maphead {
+  justify-content: space-between;
+  padding: 19px 22px;
+}
+.mapname {
+  font-weight: 620;
+  font-size: 1.15rem;
+}
+.cube,
+.waveicon {
+  font-size: 1.6rem;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+.pill {
+  border: 1px solid #56615b;
+  color: #d1d9d4;
+  border-radius: 20px;
+  padding: 3px 10px;
+}
+.mapview {
+  flex: 1;
+  position: relative;
+  min-height: 290px;
+}
+#map {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  touch-action: none;
+  cursor: grab;
+}
+.mapnote,
+.zoom {
+  position: absolute;
+  bottom: 12px;
+}
+.mapnote {
+  left: 21px;
+  color: #a3afa8;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.zoom {
+  right: 19px;
+  display: flex;
+  gap: 4px;
+}
+.zoom button {
+  border: 1px solid #48544e;
+  background: #262f2a;
+  color: white;
+  border-radius: 5px;
+  width: 32px;
+  height: 32px;
+}
+.mapfoot {
+  gap: 19px;
+  flex-wrap: wrap;
+  border-top: 1px solid #36403a;
+  padding: 12px 20px;
+  color: #bac4bc;
+  font-size: 0.78rem;
+}
+.mapfoot span {
+  display: flex;
+  align-items: center;
+}
+.mint {
+  background: var(--mint);
+}
+.outline,
+.solid {
+  width: 16px;
+  margin-right: 6px;
+  border-top: 1px dashed #a6aea8;
+}
+.solid {
+  border-top: 3px solid #99c7b4;
+}
+aside {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+.panel,
+.player {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #faf9f5;
+}
+.panel {
+  padding: 18px;
+}
+.sectitle {
+  justify-content: space-between;
+  margin-bottom: 13px;
+}
+.small {
+  border: 1px solid var(--line);
+  background: transparent;
+  padding: 4px 10px;
+  font-size: 0.83rem;
+}
+.source {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  padding: 9px 10px;
+}
+.source[aria-pressed="true"] {
+  background: #f0e9dd;
+  border-color: #deceba;
+}
+.source strong {
+  font-size: 0.93rem;
+}
+.source small {
+  margin-left: auto;
+  color: #62665e;
+}
+.speakericon {
+  color: #93401f;
+  font-size: 1.15rem;
+}
+.editor {
+  margin-top: 10px;
+}
+.editor details {
+  border-top: 1px solid var(--line);
+  padding-top: 9px;
+  font-size: 0.85rem;
+}
+.editor summary {
+  cursor: pointer;
+}
+.axis {
+  display: grid;
+  grid-template-columns: 35px 1fr 52px;
+  gap: 5px;
+}
+.axis output {
+  text-align: right;
+}
+.remove {
+  margin-top: 6px;
+  background: none;
+  border: 0;
+  color: #944521;
+}
+.field {
+  display: flex;
+  justify-content: space-between;
+  gap: 9px;
+  align-items: center;
+  font-size: 0.87rem;
+}
+.field select {
+  background: #f2f1ea;
+  border: 1px solid #cbcfc5;
+  border-radius: 6px;
+  padding: 7px;
+  max-width: 60%;
+}
+#surfacecount,
+.statusline {
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+#surfacecount {
+  margin-top: 11px;
+}
+.player {
+  gap: 16px;
+  margin-top: 16px;
+  padding: 15px 20px;
+}
+.album {
+  width: 55px;
+  height: 55px;
+  border-radius: 7px;
+  background: repeating-radial-gradient(
+    circle at 50% 50%,
+    #302d24 0 2px,
+    #535044 3px 4px
+  );
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.album i {
+  width: 17px;
+  height: 17px;
+  background: var(--orange);
+  border: 5px solid #db7549;
+  border-radius: 50%;
+}
+.track {
+  width: 25%;
+  min-width: 0;
+}
+.track strong {
+  white-space: nowrap;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.play {
+  border: 0;
+  border-radius: 50%;
+  background: var(--orange);
+  width: 43px;
+  height: 43px;
+  flex: none;
+}
+.timeline {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+input[type="range"] {
+  accent-color: var(--orange);
+  width: 100%;
+}
+#time {
+  letter-spacing: 0;
+  font-weight: 400;
+  color: var(--muted);
+}
+.filebtn {
+  background: #242a25;
+  color: #fff;
+  padding: 9px 14px;
+  position: relative;
+  font-size: 0.88rem;
+  overflow: hidden;
+}
+.filebtn input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  width: 100%;
+  cursor: pointer;
+}
+.statusline {
+  padding: 12px 3px 20px;
+}
+dialog {
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  padding: 26px;
+  background: #faf9f5;
+  color: var(--ink);
+  max-width: min(480px, 94vw);
+  box-shadow: 0 16px 70px #0004;
+}
+dialog::backdrop {
+  background: #1016148c;
+}
+dialog h2 {
+  font-size: 1.9rem;
+  margin: 9px 0;
+}
+dialog p,
+dialog li,
+.choice span {
+  font-size: 0.94rem;
+  color: var(--muted);
+}
+dialog ol {
+  padding-left: 19px;
+}
+dialog li + li {
+  margin-top: 10px;
+}
+.close {
+  float: right;
+  border: 0;
+  background: transparent;
+  font-size: 1.6rem;
+}
+.choice {
+  width: 100%;
+  text-align: left;
+  display: grid;
+  gap: 4px;
+  padding: 14px;
+  margin: 12px 0;
+  border-radius: 8px;
+  background: #efeee7;
+  border: 1px solid var(--line);
+}
+.choice:hover {
+  border-color: #b57c54;
+}
+.textlink {
+  color: #944521;
+}
+#setupmessage {
+  margin-top: 10px;
+}
+.cam {
+  position: fixed;
+  inset: 0;
+  z-index: 8;
+  background: #19201e;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cam video,
+.cam canvas {
+  position: absolute;
+  max-height: 100%;
+  max-width: 100%;
+}
+.cam .camhud {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 8px;
+  padding: 18px;
+  pointer-events: none;
+}
+.camhud > * {
+  pointer-events: auto;
+  background: #202825;
+  color: white;
+  border: 1px solid #768579;
+  border-radius: 8px;
+  padding: 10px;
+}
+.camstatus {
+  position: absolute;
+  top: 12px;
+  padding: 8px 15px;
+  background: #19201edc;
+  border-radius: 6px;
+  max-width: 92vw;
+  text-align: center;
+}
+.camhud button {
+  font-size: 0.88rem;
+}
+@media (max-width: 800px) {
+  header {
+    height: 64px;
+  }
+  .intro {
+    padding-top: 22px;
+  }
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+  aside {
+    grid-template-columns: 1fr 1fr;
+  }
+  .mapview {
+    min-height: clamp(240px, 37vh, 380px);
+  }
+}
+@media (max-width: 550px) {
+  .intro {
+    align-items: start;
+    flex-wrap: wrap;
+  }
+  .headtag {
+    display: none;
+  }
+  .primary {
+    padding: 9px 13px;
+  }
+  .intro h1 {
+    font-size: 2.65rem;
+  }
+  aside {
+    grid-template-columns: 1fr;
+  }
+  .mapfoot {
+    gap: 10px;
+  }
+  .maphead {
+    padding: 14px 16px;
+  }
+  .player {
+    position: relative;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px;
+  }
+  .track {
+    flex: 1;
+  }
+  .timeline {
+    flex-basis: 65%;
+    order: 4;
+  }
+  .filebtn {
+    order: 5;
+  }
+  .album {
+    width: 42px;
+    height: 42px;
+  }
+  .panel {
+    padding: 15px;
+  }
+  .mapnote {
+    font-size: 0.72rem;
+  }
+}
+.cam video {
+  width: 100%;
+  height: auto;
+  max-width: 100vw;
+  max-height: none;
+  position: relative;
+  object-fit: contain;
+}
+.cam canvas {
+  touch-action: none;
+  max-width: none;
+  max-height: none;
+}
+.cam video {
+  width: auto;
+  height: auto;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: fill;
+}
+.scan-inset {
+  position: absolute;
+  top: 90px;
+  right: 14px;
+  width: min(310px, 72vw);
+  height: 210px;
+  background: #1c221ff2;
+  border: 1px solid #7d9385;
+  border-radius: 12px;
+  z-index: 3;
+}
+.scan-inset[hidden] {
+  display: none;
+}
+.scan-inset canvas {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  position: absolute;
+}

@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#f3f2ec" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23e66331'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23202320'/%3E%3Cpath d='M16 8v16' stroke='%23e66331' stroke-width='3'/%3E%3C/svg%3E"
+    />
+    <title>Roomtone — Spatial audio studio</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="vendor/resonance-audio.min.js"></script>
+    <script type="module" src="studio.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <span class="brandmark" aria-hidden="true">◖◗</span> Roomtone
+      </div>
+      <span class="headtag">SPATIAL AUDIO STUDIO</span
+      ><button class="help" id="guide">Studio guide <b>?</b></button>
+    </header>
+    <main>
+      <section class="intro">
+        <div>
+          <div class="eyebrow"><i></i> LISTENING SESSION</div>
+          <h1>Your sound room<span>.</span></h1>
+        </div>
+        <button class="primary" id="start">◎ &nbsp; Start room scan</button>
+      </section>
+      <div class="workspace">
+        <section class="mapcard">
+          <div class="maphead">
+            <div class="mapname"><span class="cube">⬡</span> Room map</div>
+            <span class="pill" id="mode">PREVIEW</span>
+          </div>
+          <div class="mapview">
+            <canvas
+              id="map"
+              aria-label="Three-dimensional room map. Drag to orbit. Select a speaker to edit it."
+            ></canvas>
+            <div class="mapnote" id="mapnote">Drag to orbit</div>
+            <div class="zoom">
+              <button id="zin" aria-label="Zoom in">+</button
+              ><button id="zout" aria-label="Zoom out">−</button
+              ><button id="homeview" aria-label="Reset map view">⌂</button>
+            </div>
+          </div>
+          <div class="mapfoot">
+            <span><i class="dot orange"></i>Speaker</span
+            ><span><i class="dot mint"></i>Listener</span
+            ><span><i class="outline"></i>Estimated</span
+            ><span><i class="solid"></i>Observed</span>
+          </div>
+        </section>
+        <aside>
+          <section class="panel">
+            <div class="sectitle">
+              <h2>Speakers</h2>
+              <button class="small" id="add" aria-label="Add speaker">
+                + Add
+              </button>
+            </div>
+            <div id="sources"></div>
+            <div class="editor" id="editor"></div>
+          </section>
+          <section class="panel">
+            <div class="sectitle">
+              <h2>Room acoustics</h2>
+              <span class="waveicon">≋</span>
+            </div>
+            <label class="field"
+              >Surface preset<select id="material">
+                <option value="living">Living room</option>
+                <option value="studio">Treated studio</option>
+                <option value="hall">Reflective hall</option>
+                <option value="dry">Dry reference</option>
+              </select></label
+            >
+            <p id="surfacecount">Estimated enclosure · 0 observed surfaces</p>
+          </section>
+        </aside>
+      </div>
+      <section class="player">
+        <div class="album" aria-hidden="true"><i></i></div>
+        <div class="track">
+          <div class="eyebrow">LOCAL TRACK</div>
+          <strong id="trackname">Choose a song</strong>
+        </div>
+        <button id="play" class="play" disabled aria-label="Play">▶</button>
+        <div class="timeline">
+          <input
+            aria-label="Track position"
+            type="range"
+            id="seek"
+            min="0"
+            max="1000"
+            value="0"
+            disabled
+          /><span id="time">0:00 / 0:00</span>
+        </div>
+        <label class="filebtn"
+          >Load audio<input
+            type="file"
+            id="file"
+            accept="audio/*,.flac,.wav,.mp3,.m4a,.ogg"
+        /></label>
+      </section>
+      <div class="statusline">
+        <span id="notice" role="status"
+          >Load a local track to listen through your earbuds.</span
+        >
+      </div>
+    </main>
+    <dialog id="setup">
+      <form method="dialog">
+        <button class="close" aria-label="Close">×</button>
+      </form>
+      <div class="eyebrow">TRACKING</div>
+      <h2>Scan your room</h2>
+      <p>
+        Move slowly with your earbuds in. The phone’s pose sets the listening
+        position and direction.
+      </p>
+      <button class="choice" id="xr">
+        <strong>Walk & scan</strong
+        ><span
+          >Rear camera + motion sensors. Sweep across walls and the floor on a
+          WebXR-capable phone.</span
+        ></button
+      ><button class="choice" id="marker">
+        <strong>Selfie camera + wall markers</strong
+        ><span
+          >Track against printed wall markers. Double-pinch to add a speaker,
+          then pinch and hold to move it.</span
+        ></button
+      ><a class="textlink" href="markers.html" target="_blank"
+        >Open printable wall markers ↗</a
+      >
+      <p id="setupmessage" role="status"></p>
+    </dialog>
+    <dialog id="manual">
+      <form method="dialog">
+        <button class="close" aria-label="Close">×</button>
+      </form>
+      <div class="eyebrow">STUDIO GUIDE</div>
+      <h2>Listen in your room</h2>
+      <ol>
+        <li>
+          Connect stereo earbuds and load a local audio file. All speakers share
+          its playback clock.
+        </li>
+        <li>
+          Start a scan. Aim at walls and floors from several angles. Solid
+          surfaces show observations. The dashed box estimates the rest of the
+          enclosure.
+        </li>
+        <li>
+          Double-pinch in open space to add a speaker. Pinch a speaker to grab
+          it and release to drop it. Touch placement is available in scan mode.
+        </li>
+        <li>
+          Carry the phone facing your listening direction in rear-camera mode.
+          The audio follows the phone. Speaker positions last for the current
+          scan.
+        </li>
+      </ol>
+      <p>
+        The studio also works as a room simulator without a camera. Select a
+        speaker to change its position.
+      </p>
+    </dialog>
+  </body>
+</html>

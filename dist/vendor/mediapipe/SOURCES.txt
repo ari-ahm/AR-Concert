@@ -1,0 +1,10 @@
+MediaPipe Tasks Vision 0.10.21, from Google and the MediaPipe authors.
+Package: https://registry.npmjs.org/@mediapipe/tasks-vision/-/tasks-vision-0.10.21.tgz
+Package SHA-256: 343736570f433c0100ffc360dbe70f09cc502a5fc573f5cd95954692edc9cfde
+Source: https://github.com/google-ai-edge/mediapipe/tree/cad7f3ab99ebf175947e40c5252c642612aae927
+See LICENSE for the upstream project license and notices.
+
+Google MediaPipe Hand Landmarker full float16 model, version 1.
+Model: https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task
+Model SHA-256: fbc2a30080c3c557093b5ddfc334698132eb341044ccee322ccf8bcf3607cde1
+Documentation: https://developers.google.com/edge/mediapipe/solutions/vision/hand_landmarker

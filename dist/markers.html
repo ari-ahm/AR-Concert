@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Roomtone wall markers</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font: 16px/1.5 system-ui;
+        margin: 16px;
+      }
+      section {
+        break-after: page;
+      }
+      section:last-of-type {
+        break-after: auto;
+      }
+      img {
+        width: 187.5mm;
+        max-width: 100%;
+        display: block;
+      }
+      button {
+        padding: 8px 16px;
+      }
+      @media print {
+        @page {
+          margin: 8mm;
+        }
+        header {
+          display: none;
+        }
+        img {
+          width: 187.5mm;
+          max-width: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Wall markers</h1>
+      <p>
+        Print at 100%. Measure the black square (150 mm). Mount marker 0 upright
+        on a wall behind you for the selfie camera. Put the others on flat
+        surfaces, keeping a known marker and each new marker visible together
+        once.
+      </p>
+      <button onclick="window.print()">Print markers</button>
+    </header>
+    <main id="sheets"></main>
+    <script>
+      for (let i = 0; i < 4; i++) {
+        const section = document.createElement("section");
+        section.innerHTML =
+          "<h2>Roomtone / Marker " +
+          i +
+          '</h2><img alt="Room tracking marker ' +
+          i +
+          '" src="vendor/aruco/marker-' +
+          i +
+          '.svg"><p>Top edge up · Black square 150 mm</p>';
+        sheets.append(section);
+      }
+    </script>
+  </body>
+</html>
